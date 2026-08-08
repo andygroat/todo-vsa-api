@@ -17,15 +17,15 @@ public class LoggingBehavior<TRequest, TResponse> (ILogger<LoggingBehavior<TRequ
     /// </summary>
     /// <param name="request">The request to handle.</param>
     /// <param name="next">The next delegate in the pipeline.</param>
-    /// <param name="token">The cancellation token.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>The response from the next delegate in the pipeline.</returns>
-    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken token)
+    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
         // Log the start of the request handling
         logger.LogInformation("Starting request '{RequestName}'", typeof(TRequest).Name);
 
         // Call the next delegate in the pipeline to handle the request
-        var response = await next(token);
+        var response = await next(cancellationToken);
 
         // Log the completion of the request handling
         logger.LogInformation("Completed request '{RequestName}'", typeof(TRequest).Name);

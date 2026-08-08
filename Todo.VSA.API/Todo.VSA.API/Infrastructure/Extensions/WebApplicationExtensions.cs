@@ -1,4 +1,5 @@
 ﻿using Scalar.AspNetCore;
+using Todo.VSA.Api.Features.Todos;
 
 namespace Todo.VSA.Api.Infrastructure.Extensions
 {
@@ -16,6 +17,9 @@ namespace Todo.VSA.Api.Infrastructure.Extensions
             {
                 app.MapOpenApiWithScalarPage();
             }
+
+            // Map the to-do item endpoints for the WebApplication instance.
+            app.MapTodoEndpoints();
 
             return app;
         }

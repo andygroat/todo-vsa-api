@@ -4,7 +4,7 @@ using Todo.VSA.Model.Domain.Todos;
 
 namespace Todo.VSA.DataAccess.Context;
 
-public sealed class TodoDbContext (DbContextOptions<TodoDbContext> options) : DbContext
+public sealed class TodoDbContext (DbContextOptions<TodoDbContext> options) : DbContext(options)
 {
     /// <summary>
     /// Gets or sets the DbSet of TodoItem entities.
