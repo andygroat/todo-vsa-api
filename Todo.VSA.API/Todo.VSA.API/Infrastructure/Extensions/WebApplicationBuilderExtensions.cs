@@ -1,6 +1,8 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Todo.VSA.Api.Infrastructure.Behaviours;
+using Todo.VSA.DataAccess.Context;
 
 namespace Todo.VSA.Api.Infrastructure.Extensions
 {
@@ -17,6 +19,8 @@ namespace Todo.VSA.Api.Infrastructure.Extensions
             builder.AddSerilogLogging();
             // Add Mediatr services
             builder.AddMedaitr();
+            // Add Database context
+            builder.AddDatabaseContext();
 
             return builder;
         }
@@ -50,6 +54,20 @@ namespace Todo.VSA.Api.Infrastructure.Extensions
                 cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
                 cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             });
+            return builder;
+        }
+
+        private static WebApplicationBuilder AddDatabaseContext(this WebApplicationBuilder builder)
+        {
+            // Configure the database context for the application
+
+            // Configure to use an in-memory database for development and testing purposes. This is useful for scenarios where you want to quickly set up a database without the need for an actual database server.
+            builder.Services.AddDbContext<TodoDbContext>(options => options.UseInMemoryDatabase("TodoDb"));
+
+            // In a production environment, you would typically configure the database context to use a real database provider (e.g., SQL Server, PostgreSQL, etc.) and provide the appropriate connection string from the configuration.
+            // For example:
+            // builder.Services.AddDbContext<TodoDbContext>(options =>
+            //     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             return builder;
         }
     }
