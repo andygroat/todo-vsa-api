@@ -13,6 +13,7 @@ internal static class RegisterTodoEndpoints
     public static WebApplication MapTodoEndpoints(this WebApplication app)
     {
         app.MapCreateTodoEndpoint();
+        app.MapGetTodosEndpoint();
 
         return app;
     }
