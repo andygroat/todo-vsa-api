@@ -14,6 +14,7 @@ internal static class RegisterTodoEndpoints
     {
         app.MapCreateTodoEndpoint();
         app.MapGetTodosEndpoint();
+        app.MapGetTodoByIdEndpoint();
 
         return app;
     }

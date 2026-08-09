@@ -65,7 +65,7 @@ public static class GetTodos
     /// <param name="app">The WebApplication instance used to map the endpoint.</param>
     public static WebApplication MapGetTodosEndpoint(this WebApplication app)
     {
-        app.MapGet("/api/todos", async (string ? search, IMediator mediator, CancellationToken cancellationToken) =>
+        app.MapGet("/api/todos", async (string? search, IMediator mediator, CancellationToken cancellationToken) =>
         {
             // Send the query to the MediatR pipeline and await the result
             Result<List<Response>> result = await mediator.Send(new Query(search), cancellationToken);
