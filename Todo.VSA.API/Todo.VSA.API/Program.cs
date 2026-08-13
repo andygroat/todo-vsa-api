@@ -34,6 +34,9 @@ try
 
     app.MapControllers();
 
+    // Add exception handling middleware to the application, this is required for the custom exception handlers to work properly.
+    app.UseExceptionHandler();
+
     app.Run();
 
 }
