@@ -21,4 +21,8 @@
     <ProjectReference Include="..\Todo.VSA.DataAccess\Todo.VSA.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="Todo.VSA.Api.Tests" />
+  </ItemGroup>
+
 </Project>
