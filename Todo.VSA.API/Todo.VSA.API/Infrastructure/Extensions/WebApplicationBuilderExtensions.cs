@@ -2,12 +2,14 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using System.Diagnostics.CodeAnalysis;
 using Todo.VSA.Api.Infrastructure.Behaviours;
 using Todo.VSA.Api.Infrastructure.Exceptions;
 using Todo.VSA.DataAccess.Context;
 
 namespace Todo.VSA.Api.Infrastructure.Extensions
 {
+    [ExcludeFromCodeCoverage]
     internal static class WebApplicationBuilderExtensions
     {
         /// <summary>
