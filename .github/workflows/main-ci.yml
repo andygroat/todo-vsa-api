@@ -14,7 +14,7 @@ on:
 # Declare environment variables for use throughout the pipeline
 env:
   DotNetVersion: 10.x
-  Solution: Todo.VSA.API.slnx
+  Solution: Todo.VSA.API/Todo.VSA.API.slnx
   WebProject: Todo.VSA.API/Todo.VSA.API.csproj
 
 permissions:
@@ -45,7 +45,7 @@ jobs:
 
       # Restore the dependencies for the project
       - name: Restore Dependencies
-        run: dotnet restore ${{ env.Solution }}
+        run: dotnet restore --solution ${{ env.Solution }}
 
       # Build the solution
       - name: Build
