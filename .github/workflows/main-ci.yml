@@ -61,8 +61,6 @@ jobs:
 
       # Run the tests and get the code coverage
       - name: Test
-        env:
-          DOTNET_CLI_CONFIG_FILE: ${{ github.workspace }}/dotnet.config  
         run: dotnet test --solution ${{ env.Solution }} --configuration Release --no-build --verbosity normal -- --coverage --coverage-output-format cobertura --coverage-settings codecoverage.config.xml --results-directory ./coverage --report-trx
 
       # Publish the test results to Github Actions
