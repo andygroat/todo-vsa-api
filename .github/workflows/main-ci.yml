@@ -55,10 +55,6 @@ jobs:
       - name: Verify coverage settings file
         run: ls -la codecoverage.config.xml
         
-      # Verify the dotnet settings file exists
-      - name: Verify dotnet settings file
-        run: ls -la dotnet.config
-
       # Run the tests and get the code coverage
       - name: Test
         run: dotnet test --solution ${{ env.Solution }} --configuration Release --no-build --verbosity normal -- --coverage --coverage-output-format cobertura --coverage-settings codecoverage.config.xml --results-directory ./coverage --report-trx
