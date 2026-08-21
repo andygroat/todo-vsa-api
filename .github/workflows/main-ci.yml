@@ -15,7 +15,7 @@ on:
 env:
   DotNetVersion: 10.x
   Solution: Todo.Vsa.Api/Todo.Vsa.Api.slnx
-  WebProject: Todo.Vsa.Api/Todo.Vsa.Api.csproj
+  WebProject: Todo.Vsa.Api/Todo.Vsa.Api/Todo.Vsa.Api.csproj
 
 permissions:
   # Setup the permissions for the pipeline, this is required to allow the pipeline to run and access the repo.
