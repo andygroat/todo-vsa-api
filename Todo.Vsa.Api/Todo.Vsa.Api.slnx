@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".runsettings" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="Todo.Vsa.Api.Tests/Todo.Vsa.Api.Tests.csproj" Id="9cf3f109-1765-4dd0-bae0-e8ddf6973a67" DisplayName="Todo.Vsa.Api.Tests" />
+  </Folder>
+  <Project Path="Todo.Vsa.Api/Todo.Vsa.Api.csproj" DisplayName="Todo.Vsa.Api" />
+  <Project Path="Todo.Vsa.DataAccess/Todo.Vsa.DataAccess.csproj" DisplayName="Todo.Vsa.DataAccess" />
+  <Project Path="Todo.Vsa.Model/Todo.Vsa.Model.csproj" DisplayName="Todo.Vsa.Model" />
+  <Project Path="Todo.Vsa/Todo.Vsa.csproj" Id="55278bd8-c732-4cd8-a17f-cde50a601fa6" DisplayName="Todo.Vsa" />
+</Solution>
