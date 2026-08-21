@@ -1,7 +1,6 @@
 <Solution>
   <Folder Name="/Solution Items/">
     <File Path=".runsettings" />
-    <File Path="dotnet.config" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="Todo.Vsa.Api.Tests/Todo.Vsa.Api.Tests.csproj" Id="9cf3f109-1765-4dd0-bae0-e8ddf6973a67" />
