@@ -14,8 +14,8 @@ on:
 # Declare environment variables for use throughout the pipeline
 env:
   DotNetVersion: 10.x
-  Solution: Todo.VSA.API/Todo.VSA.API.slnx
-  WebProject: Todo.VSA.API/Todo.VSA.API.csproj
+  Solution: Todo.Vsa.Api/Todo.Vsa.Api.slnx
+  WebProject: Todo.Vsa.Api/Todo.Vsa.Api.csproj
 
 permissions:
   # Setup the permissions for the pipeline, this is required to allow the pipeline to run and access the repo.
@@ -120,4 +120,4 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: .net-app
-          path: ./Todo.VSA.API/Todo.VSA.API/bin/Release/net10.0
+          path: ./Todo.Vsa.Api/Todo.Vsa.Api/bin/Release/net10.0

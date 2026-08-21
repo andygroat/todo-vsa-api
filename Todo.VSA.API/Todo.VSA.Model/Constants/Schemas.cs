@@ -1,4 +1,4 @@
-﻿namespace Todo.VSA.Model.Constants;
+﻿namespace Todo.Vsa.Model.Constants;
 
 /// <summary>
 /// The Schemas class contains constants for the database schema names used in the application.

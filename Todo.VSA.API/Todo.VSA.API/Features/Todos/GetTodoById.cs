@@ -2,10 +2,10 @@ using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Todo.VSA.Api.Infrastructure.ResultHelper;
-using Todo.VSA.DataAccess.Context;
+using Todo.Vsa.Api.Infrastructure.ResultHelper;
+using Todo.Vsa.DataAccess.Context;
 
-namespace Todo.VSA.Api.Features.Todos;
+namespace Todo.Vsa.Api.Features.Todos;
 
 /// <summary>
 /// GetTodoById feature slice. Encapsulates the query, validator, response DTO, handler, and

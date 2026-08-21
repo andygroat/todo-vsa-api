@@ -1,4 +1,4 @@
-namespace Todo.VSA.Api
+namespace Todo.Vsa.Api
 {
     public class WeatherForecast
     {

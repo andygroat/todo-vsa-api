@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Todo.VSA.Model.Constants;
-using Todo.VSA.Model.Domain.Todos;
+using Todo.Vsa.Model.Constants;
+using Todo.Vsa.Model.Domain.Todos;
 
-namespace Todo.VSA.DataAccess.Context;
+namespace Todo.Vsa.DataAccess.Context;
 
 public sealed class TodoDbContext (DbContextOptions<TodoDbContext> options) : DbContext(options)
 {

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Todo.VSA.Model.Constants;
+using Todo.Vsa.Model.Constants;
 
-namespace Todo.VSA.Model.Domain;
+namespace Todo.Vsa.Model.Domain;
 
 /// <summary>
 /// Base business object class to provide the base properties that all

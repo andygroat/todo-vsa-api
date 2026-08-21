@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Todo.VSA.Api\Todo.VSA.Api.csproj" />
+    <ProjectReference Include="..\Todo.Vsa.Api\Todo.Vsa.Api.csproj" />
   </ItemGroup>
 
 </Project>

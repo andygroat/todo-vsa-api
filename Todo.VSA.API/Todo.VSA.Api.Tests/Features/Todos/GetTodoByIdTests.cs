@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging.Abstractions;
-using Todo.VSA.Api.Features.Todos;
-using Todo.VSA.DataAccess.Context;
-using Todo.VSA.Model.Domain.Todos;
+using Todo.Vsa.Api.Features.Todos;
+using Todo.Vsa.DataAccess.Context;
+using Todo.Vsa.Model.Domain.Todos;
 
-namespace Todo.VSA.Api.Tests.Features.Todos;
+namespace Todo.Vsa.Api.Tests.Features.Todos;
 
 /// <summary>
 /// Tests for the <see cref="GetTodoById"/> vertical slice.

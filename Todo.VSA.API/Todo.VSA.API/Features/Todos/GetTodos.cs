@@ -1,10 +1,10 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Todo.VSA.Api.Infrastructure.ResultHelper;
-using Todo.VSA.DataAccess.Context;
-using Todo.VSA.Model.Domain.Todos;
+using Todo.Vsa.Api.Infrastructure.ResultHelper;
+using Todo.Vsa.DataAccess.Context;
+using Todo.Vsa.Model.Domain.Todos;
 
-namespace Todo.VSA.Api.Features.Todos;
+namespace Todo.Vsa.Api.Features.Todos;
 
 /// <summary>
 /// GetTodos feature slice. Encapsulates the query, response DTO, handler, and endpoint

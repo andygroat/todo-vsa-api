@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Todo.VSA.Model\Todo.VSA.Model.csproj" />
+    <ProjectReference Include="..\Todo.Vsa.Model\Todo.Vsa.Model.csproj" />
   </ItemGroup>
 
 </Project>

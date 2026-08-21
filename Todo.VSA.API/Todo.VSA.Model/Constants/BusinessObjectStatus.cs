@@ -1,5 +1,5 @@
 ﻿
-namespace Todo.VSA.Model.Constants;
+namespace Todo.Vsa.Model.Constants;
 
 /// <summary>
 /// The base status options for a business object.

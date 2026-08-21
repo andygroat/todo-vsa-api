@@ -1,8 +1,8 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
-using Todo.VSA.Api.Infrastructure.Behaviours;
+using Todo.Vsa.Api.Infrastructure.Behaviours;
 
-namespace Todo.VSA.Api.Tests.Infrastructure.Behaviours;
+namespace Todo.Vsa.Api.Tests.Infrastructure.Behaviours;
 
 /// <summary>
 /// Tests for <see cref="LoggingBehavior{TRequest, TResponse}"/>.

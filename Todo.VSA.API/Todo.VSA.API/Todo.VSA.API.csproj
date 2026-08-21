@@ -18,11 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Todo.VSA.DataAccess\Todo.VSA.DataAccess.csproj" />
+    <ProjectReference Include="..\Todo.Vsa.DataAccess\Todo.Vsa.DataAccess.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <InternalsVisibleTo Include="Todo.VSA.Api.Tests" />
+    <InternalsVisibleTo Include="Todo.Vsa.Api.Tests" />
   </ItemGroup>
 
 </Project>

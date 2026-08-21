@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Todo.VSA.Api.Infrastructure.Exceptions;
+namespace Todo.Vsa.Api.Infrastructure.Exceptions;
 
 /// <summary>
 /// Exception handler for handling validation exceptions (FluentValidation) in the application. This class implements the IExceptionHandler interface and provides logic to handle validation exceptions,

@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
 using MediatR;
-using Todo.VSA.Api.Infrastructure.ResultHelper;
-using Todo.VSA.DataAccess.Context;
-using Todo.VSA.Model.Domain.Todos;
+using Todo.Vsa.Api.Infrastructure.ResultHelper;
+using Todo.Vsa.DataAccess.Context;
+using Todo.Vsa.Model.Domain.Todos;
 
-namespace Todo.VSA.Api.Features.Todos;
+namespace Todo.Vsa.Api.Features.Todos;
 
 /// <summary>
 /// CreateTodo feature class for handling the creation of Todo items. This class defines the necessary logic, commands, and handlers for creating new Todo items in the application.

@@ -1,6 +1,6 @@
-@Todo.VSA.Api_HostAddress = http://localhost:5103
+@Todo.Vsa.Api_HostAddress = http://localhost:5103
 
-GET {{Todo.VSA.Api_HostAddress}}/weatherforecast/
+GET {{Todo.Vsa.Api_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###

@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Todo.VSA.Api.Infrastructure.Exceptions;
+using Todo.Vsa.Api.Infrastructure.Exceptions;
 
-namespace Todo.VSA.Api.Tests.Infrastructure.Exceptions;
+namespace Todo.Vsa.Api.Tests.Infrastructure.Exceptions;
 
 /// <summary>
 /// Tests for <see cref="GlobalExceptionHandler"/>.

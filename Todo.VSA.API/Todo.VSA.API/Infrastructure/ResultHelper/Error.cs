@@ -1,4 +1,4 @@
-﻿namespace Todo.VSA.Api.Infrastructure.ResultHelper;
+﻿namespace Todo.Vsa.Api.Infrastructure.ResultHelper;
 
 /// <summary>
 /// Represents an application error with a code and description.

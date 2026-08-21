@@ -1,8 +1,8 @@
 ﻿using Scalar.AspNetCore;
 using System.Diagnostics.CodeAnalysis;
-using Todo.VSA.Api.Features.Todos;
+using Todo.Vsa.Api.Features.Todos;
 
-namespace Todo.VSA.Api.Infrastructure.Extensions
+namespace Todo.Vsa.Api.Infrastructure.Extensions
 {
     [ExcludeFromCodeCoverage]
     internal static class WebApplicationExtensions

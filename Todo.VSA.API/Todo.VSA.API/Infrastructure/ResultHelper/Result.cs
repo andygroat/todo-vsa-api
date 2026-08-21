@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Todo.VSA.Api.Infrastructure.ResultHelper;
+namespace Todo.Vsa.Api.Infrastructure.ResultHelper;
 
 /// <summary>
 /// Represents the result of an operation, indicating success or failure and providing an associated error if applicable.

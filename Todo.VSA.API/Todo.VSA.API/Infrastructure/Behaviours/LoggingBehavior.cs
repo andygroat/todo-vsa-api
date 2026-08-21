@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using MediatR;
 
-namespace Todo.VSA.Api.Infrastructure.Behaviours;
+namespace Todo.Vsa.Api.Infrastructure.Behaviours;
 
 /// <summary>
 /// A pipeline behavior that logs the handling of requests and responses.

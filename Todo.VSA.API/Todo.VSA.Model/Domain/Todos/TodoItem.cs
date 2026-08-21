@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Todo.VSA.Model.Domain.Todos;
+namespace Todo.Vsa.Model.Domain.Todos;
 
 /// <summary>
 /// Represents a to-do item in the application.

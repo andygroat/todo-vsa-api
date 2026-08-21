@@ -1,4 +1,4 @@
-﻿namespace Todo.VSA.Api.Features.Todos;
+﻿namespace Todo.Vsa.Api.Features.Todos;
 
 /// <summary>
 /// Provides extension methods for registering to-do item endpoints in a WebApplication instance.

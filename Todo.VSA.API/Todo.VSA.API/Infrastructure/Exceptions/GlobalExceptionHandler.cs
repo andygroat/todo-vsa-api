@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Todo.VSA.Api.Infrastructure.Exceptions;
+namespace Todo.Vsa.Api.Infrastructure.Exceptions;
 
 /// <summary>
 /// Exception handler for handling unhandled exceptions in the application. This class implements the IExceptionHandler interface and provides logic to handle unhandled exceptions, log them, and return a standardized error response to the client.
