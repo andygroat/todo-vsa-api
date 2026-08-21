@@ -3,10 +3,13 @@
     <File Path=".runsettings" />
   </Folder>
   <Folder Name="/tests/">
-    <Project Path="Todo.Vsa.Api.Tests/Todo.Vsa.Api.Tests.csproj" Id="9cf3f109-1765-4dd0-bae0-e8ddf6973a67" DisplayName="Todo.Vsa.Api.Tests" />
+    <Project Path="Todo.Vsa.Api.Tests/Todo.Vsa.Api.Tests.csproj" Id="9cf3f109-1765-4dd0-bae0-e8ddf6973a67" />
+    <Project Path="Todo.Vsa.DataAccess.Tests/Todo.Vsa.DataAccess.Tests.csproj" Id="2b05dcb0-8ca3-4bb4-89c7-ec63766c2a19" />
+    <Project Path="Todo.Vsa.Model.Tests/Todo.Vsa.Model.Tests.csproj" Id="ec50cef7-95dc-4621-85d8-12aca6090e1f" />
+    <Project Path="Todo.Vsa.Tests/Todo.Vsa.Tests.csproj" Id="7c0a8ae2-605d-42b7-b25c-58adad1a1774" />
   </Folder>
-  <Project Path="Todo.Vsa.Api/Todo.Vsa.Api.csproj" DisplayName="Todo.Vsa.Api" />
-  <Project Path="Todo.Vsa.DataAccess/Todo.Vsa.DataAccess.csproj" DisplayName="Todo.Vsa.DataAccess" />
-  <Project Path="Todo.Vsa.Model/Todo.Vsa.Model.csproj" DisplayName="Todo.Vsa.Model" />
-  <Project Path="Todo.Vsa/Todo.Vsa.csproj" Id="55278bd8-c732-4cd8-a17f-cde50a601fa6" DisplayName="Todo.Vsa" />
+  <Project Path="Todo.Vsa.Api/Todo.Vsa.Api.csproj" />
+  <Project Path="Todo.Vsa.DataAccess/Todo.Vsa.DataAccess.csproj" />
+  <Project Path="Todo.Vsa.Model/Todo.Vsa.Model.csproj" />
+  <Project Path="Todo.Vsa/Todo.Vsa.csproj" Id="55278bd8-c732-4cd8-a17f-cde50a601fa6" />
 </Solution>
