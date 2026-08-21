@@ -54,6 +54,10 @@ jobs:
       # Verify the code coverage settings file exists
       - name: Verify coverage settings file
         run: ls -la codecoverage.config.xml
+        
+      # Verify the dotnet settings file exists
+      - name: Verify dotnet settings file
+        run: ls -la dotnet.config
 
       # Run the tests and get the code coverage
       - name: Test
