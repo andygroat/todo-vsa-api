@@ -45,7 +45,7 @@ jobs:
 
       # Restore the dependencies for the project
       - name: Restore Dependencies
-        run: dotnet restore --solution ${{ env.Solution }}
+        run: dotnet restore ${{ env.Solution }}
 
       # Build the solution
       - name: Build
