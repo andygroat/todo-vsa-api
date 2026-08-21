@@ -1,0 +1,123 @@
+# Name the Workflow/Pipeline, this appears on the Github Actions page, so keep it easy to understand and recognisable.
+name: main-continous-integration
+
+# Setup the triggers for the pipeline, this the event that occurs that trigger this pipeline to run.
+# Trigger the CI pipeline on push or pull request (main branch)
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+# Declare environment variables for use throughout the pipeline
+env:
+  DotNetVersion: 10.x
+  Solution: todo-momo-api/todo-momo-api.slnx
+  WebProject: todo-momo-api/todo-momo-api/todo-momo-api.csproj
+
+permissions:
+  # Setup the permissions for the pipeline, this is required to allow the pipeline to run and access the repo.
+  # The permissions are set to read-only for the contents of the repo, and read/write for the pull requests.
+  # This is required to allow the pipeline to add comments to pull requests.
+  contents: read
+  checks: write
+  pull-requests: write
+
+# Setup the job steps. This defines the steps that the pipeline will follow
+jobs:
+  build:
+    # Specify the server/agent that the pipeline will run on
+    runs-on: ubuntu-latest
+
+    # Configure the steps for the pipeline
+    steps:
+      # Check the latest code out of the repo
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      # Setup the DotNet environment on the agent
+      - name: Setup DotNet
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: ${{ env.DotNetVersion }}
+
+      # Restore the dependencies for the project
+      - name: Restore Dependencies
+        run: dotnet restore ${{ env.Solution }}
+
+      # Build the solution
+      - name: Build
+        run: dotnet build ${{ env.Solution }} --configuration Release --no-restore
+
+      # Verify the code coverage settings file exists
+      - name: Verify coverage settings file
+        run: ls -la codecoverage.config.xml
+
+      # Run the tests and get the code coverage
+      - name: Test
+        run: dotnet test --solution ${{ env.Solution }} --configuration Release --no-build --verbosity normal -- --coverage --coverage-output-format cobertura --coverage-settings codecoverage.config.xml --results-directory ./coverage --report-trx
+
+      # Publish the test results to Github Actions
+      - name: Publish test results
+        uses: dorny/test-reporter@v3
+        if: always()
+        with:
+          name: .NET Test Results
+          path: '**/*.trx'
+          reporter: dotnet-trx
+
+      # Combine the coverage reports into one report
+      - name: Combine Coverage Reports
+        uses: danielpalme/ReportGenerator-GitHub-Action@5.5.11
+        with:
+          reports: "**/*.cobertura.xml" # REQUIRED # The coverage reports that should be parsed (separated by semicolon). Globbing is supported.
+          targetdir: "${{ github.workspace }}" # REQUIRED # The directory where the generated report should be saved.
+          reporttypes: "HtmlInline;Cobertura" # The output formats and scope (separated by semicolon) Values: Badges, Clover, Cobertura, CsvSummary, Html, Html_Dark, Html_Light, Html_BlueRed, HtmlChart, HtmlInline, HtmlInline_AzurePipelines, HtmlInline_AzurePipelines_Dark, HtmlInline_AzurePipelines_Light, HtmlSummary, JsonSummary, Latex, LatexSummary, lcov, MarkdownSummary, MarkdownSummaryGithub, MarkdownDeltaSummary, MHtml, PngChart, SonarQube, TeamCitySummary, TextSummary, TextDeltaSummary, Xml, XmlSummary
+          verbosity: "Info" # The verbosity level of the log messages. Values: Verbose, Info, Warning, Error, Off
+          title: "Code Coverage" # Optional title.
+          tag: "${{ github.run_number }}_${{ github.run_id }}" # Optional tag or build version.
+          customSettings: "" # Optional custom settings (separated by semicolon). See: https://github.com/danielpalme/ReportGenerator/wiki/Settings.
+          toolpath: "reportgeneratortool" # Default directory for installing the dotnet tool.
+
+      # Upload the combined coverage report as an artifact
+      - name: Upload Combined Coverage XML
+        uses: actions/upload-artifact@v7
+        with:
+          name: coverage
+          path: ${{ github.workspace }}/Cobertura.xml
+          retention-days: 5
+
+      # Create the code coverage report
+      - name: Code Coverage Report
+        uses: irongut/CodeCoverageSummary@v1.3.0
+        with:
+          filename: Cobertura.xml
+          badge: true
+          fail_below_min: true
+          format: markdown
+          hide_branch_rate: false
+          hide_complexity: false
+          indicators: true
+          output: both
+          thresholds: '60 80'
+
+      # If the pipeline was trigger by a PR, add a comment with the coverage
+      - name: Add Coverage PR Comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        if: github.event_name == 'pull_request'
+        with:
+          recreate: true
+          path: code-coverage-results.md
+      
+      # Publish the project to a folder for deployment
+      - name: Publish
+        run: dotnet publish ${{ env.WebProject }} -c Release --property:PublishDir='./todo-momo-api'
+
+      # Upload the published project as an artifact for deployment
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v7
+        with:
+          name: .net-app
+          path: ./todo-momo-api/todo-momo-api/bin/Release/net10.0

@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".runsettings" />
+  </Folder>
   <Folder Name="/tests/">
     <Project Path="Todo.VSA.Api.Tests/Todo.VSA.Api.Tests.csproj" Id="9cf3f109-1765-4dd0-bae0-e8ddf6973a67" />
   </Folder>
