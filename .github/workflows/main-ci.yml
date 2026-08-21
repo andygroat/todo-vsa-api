@@ -57,7 +57,7 @@ jobs:
 
       # Run the tests and get the code coverage
       - name: Test
-        run: dotnet test --solution ${{ env.Solution }} --configuration Release --no-build --verbosity normal -- --coverage --coverage-output-format cobertura --coverage-settings codecoverage.config.xml --results-directory ./coverage --report-trx
+        run: dotnet test ${{ env.Solution }} --configuration Release --no-build --verbosity normal -- --coverage --coverage-output-format cobertura --coverage-settings codecoverage.config.xml --results-directory ./coverage --report-trx
 
       # Publish the test results to Github Actions
       - name: Publish test results
