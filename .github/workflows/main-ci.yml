@@ -50,10 +50,6 @@ jobs:
       # Build the solution
       - name: Build
         run: dotnet build ${{ env.Solution }} --configuration Release --no-restore
-
-      # Verify the code coverage settings file exists
-      - name: Verify coverage settings file
-        run: ls -la codecoverage.config.xml
         
       # Run the tests and get the code coverage
       - name: Test
