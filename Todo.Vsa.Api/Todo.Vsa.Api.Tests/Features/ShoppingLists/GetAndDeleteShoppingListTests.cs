@@ -97,7 +97,7 @@ public class DeleteShoppingListTests
         context.ShoppingLists.Add(list);
         await context.SaveChangesAsync();
 
-        var result = await CreateHandler(context).Handle(new DeleteShoppingList.Command(listId), CancellationToken.None);
+        var result = await CreateHandler(context).Handle(new DeleteShoppingList.DeleteShoppingListCommand(listId), CancellationToken.None);
 
         await Assert.That(result.IsSuccess).IsTrue();
         var storedList = await context.ShoppingLists.SingleAsync();
@@ -110,7 +110,7 @@ public class DeleteShoppingListTests
     public async Task Handle_WhenListNotFound_ReturnsFailure()
     {
         await using var context = CreateContext();
-        var result = await CreateHandler(context).Handle(new DeleteShoppingList.Command(Guid.NewGuid()), CancellationToken.None);
+        var result = await CreateHandler(context).Handle(new DeleteShoppingList.DeleteShoppingListCommand(Guid.NewGuid()), CancellationToken.None);
         await Assert.That(result.IsSuccess).IsFalse();
     }
 }

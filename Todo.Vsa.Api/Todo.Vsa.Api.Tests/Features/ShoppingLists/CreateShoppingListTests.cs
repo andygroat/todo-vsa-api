@@ -28,7 +28,7 @@ public class CreateShoppingListTests
         // Arrange
         await using var context = CreateContext();
         var handler = CreateHandler(context);
-        var command = new CreateShoppingList.Command("Groceries");
+        var command = new CreateShoppingList.CreateShoppingListCommand("Groceries");
 
         // Act
         var result = await handler.Handle(command, CancellationToken.None);
@@ -53,7 +53,7 @@ public class CreateShoppingListValidatorTests
     {
         var validator = new CreateShoppingList.Validator();
 
-        var result = await validator.ValidateAsync(new CreateShoppingList.Command(string.Empty));
+        var result = await validator.ValidateAsync(new CreateShoppingList.CreateShoppingListCommand(string.Empty));
 
         await Assert.That(result.IsValid).IsFalse();
     }
@@ -64,7 +64,7 @@ public class CreateShoppingListValidatorTests
         var validator = new CreateShoppingList.Validator();
         var tooLong = new string('x', 101);
 
-        var result = await validator.ValidateAsync(new CreateShoppingList.Command(tooLong));
+        var result = await validator.ValidateAsync(new CreateShoppingList.CreateShoppingListCommand(tooLong));
 
         await Assert.That(result.IsValid).IsFalse();
     }
@@ -74,7 +74,7 @@ public class CreateShoppingListValidatorTests
     {
         var validator = new CreateShoppingList.Validator();
 
-        var result = await validator.ValidateAsync(new CreateShoppingList.Command("valid"));
+        var result = await validator.ValidateAsync(new CreateShoppingList.CreateShoppingListCommand("valid"));
 
         await Assert.That(result.IsValid).IsTrue();
     }

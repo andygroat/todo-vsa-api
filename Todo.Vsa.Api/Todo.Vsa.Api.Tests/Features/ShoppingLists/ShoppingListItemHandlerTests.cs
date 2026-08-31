@@ -74,7 +74,7 @@ public class UpdateAndDeleteShoppingListItemTests
         var (listId, itemId) = await SeedListAndItemAsync(context);
 
         var handler = new DeleteShoppingListItem.Handler(context, NullLogger<DeleteShoppingListItem.Handler>.Instance);
-        var result = await handler.Handle(new DeleteShoppingListItem.Command(listId, itemId), CancellationToken.None);
+        var result = await handler.Handle(new DeleteShoppingListItem.DeleteShoppingListItemCommand(listId, itemId), CancellationToken.None);
 
         await Assert.That(result.IsSuccess).IsTrue();
         var stored = await context.ShoppingListItems.SingleAsync();
@@ -88,7 +88,7 @@ public class UpdateAndDeleteShoppingListItemTests
         var (listId, _) = await SeedListAndItemAsync(context);
 
         var handler = new DeleteShoppingListItem.Handler(context, NullLogger<DeleteShoppingListItem.Handler>.Instance);
-        var result = await handler.Handle(new DeleteShoppingListItem.Command(listId, Guid.NewGuid()), CancellationToken.None);
+        var result = await handler.Handle(new DeleteShoppingListItem.DeleteShoppingListItemCommand(listId, Guid.NewGuid()), CancellationToken.None);
 
         await Assert.That(result.IsSuccess).IsFalse();
     }

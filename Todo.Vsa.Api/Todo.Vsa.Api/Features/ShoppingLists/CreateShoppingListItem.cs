@@ -16,9 +16,15 @@ public static class CreateShoppingListItem
     /// <summary>
     /// Command record representing the data required to create a new shopping list item.
     /// </summary>
+    /// <param name="Title">The title of the shopping list item.</param>
+    public record CreateShoppingListItemCommand(string Title) : IRequest<Result<Guid>>;
+
+    /// <summary>
+    /// Command record representing the data required to create a new shopping list item.
+    /// </summary>
     /// <param name="ListId">The ID of the shopping list to add the item to.</param>
     /// <param name="Title">The title of the shopping list item.</param>
-    public record CreateShoppingListItemCommand(Guid ListId, string Title) : IRequest<Result<Guid>>;
+    internal record Command(Guid ListId, string Title) : IRequest<Result<Guid>>;
 
     /// <summary>
     /// Validator class for validating the CreateShoppingListItem command.
@@ -27,7 +33,6 @@ public static class CreateShoppingListItem
     {
         public Validator()
         {
-            RuleFor(x => x.ListId).NotEmpty();
             RuleFor(x => x.Title).NotEmpty().MaximumLength(200);
         }
     }
@@ -37,9 +42,9 @@ public static class CreateShoppingListItem
     /// </summary>
     /// <param name="context">The database context used to interact with shopping list items.</param>
     /// <param name="logger">The logger used to log information about the creation.</param>
-    internal sealed class Handler(TodoDbContext context, ILogger<Handler> logger) : IRequestHandler<CreateShoppingListItemCommand, Result<Guid>>
+    internal sealed class Handler(TodoDbContext context, ILogger<Handler> logger) : IRequestHandler<Command, Result<Guid>>
     {
-        public async Task<Result<Guid>> Handle(CreateShoppingListItemCommand request, CancellationToken cancellationToken)
+        public async Task<Result<Guid>> Handle(Command request, CancellationToken cancellationToken)
         {
             // Verify the parent shopping list exists and is not deleted
             var listExists = await context.ShoppingLists
@@ -78,12 +83,7 @@ public static class CreateShoppingListItem
     {
         app.MapPost("/api/shoppinglists/{listId:guid}/items", async (Guid listId, CreateShoppingListItemCommand command, IMediator mediator, CancellationToken cancellationToken) =>
         {
-            if (listId != command.ListId)
-            {
-                return Results.BadRequest(new { error = "ListId in URL does not match ListId in body" });
-            }
-
-            Result<Guid> result = await mediator.Send(command, cancellationToken);
+            Result<Guid> result = await mediator.Send(new Command(listId, command.Title), cancellationToken);
 
             return result.IsSuccess
                 ? Results.Created($"/api/shoppinglists/{listId}/items/{result.Value}", new { id = result.Value })

@@ -28,7 +28,7 @@ public class CreateTodoTests
         // Arrange
         await using var context = CreateContext();
         var handler = CreateHandler(context);
-        var command = new CreateTodo.Command("Buy milk", DateTime.Today.AddDays(1));
+        var command = new CreateTodo.CreateTodoCommand("Buy milk", DateTime.Today.AddDays(1));
 
         // Act
         var result = await handler.Handle(command, CancellationToken.None);
@@ -50,7 +50,7 @@ public class CreateTodoTests
         // Arrange
         await using var context = CreateContext();
         var handler = CreateHandler(context);
-        var command = new CreateTodo.Command("No due date", null);
+        var command = new CreateTodo.CreateTodoCommand("No due date", null);
 
         // Act
         var result = await handler.Handle(command, CancellationToken.None);
@@ -72,7 +72,7 @@ public class CreateTodoValidatorTests
     {
         var validator = new CreateTodo.Validator();
 
-        var result = await validator.ValidateAsync(new CreateTodo.Command(string.Empty, null));
+        var result = await validator.ValidateAsync(new CreateTodo.CreateTodoCommand(string.Empty, null));
 
         await Assert.That(result.IsValid).IsFalse();
     }
@@ -83,7 +83,7 @@ public class CreateTodoValidatorTests
         var validator = new CreateTodo.Validator();
         var tooLong = new string('x', 101);
 
-        var result = await validator.ValidateAsync(new CreateTodo.Command(tooLong, null));
+        var result = await validator.ValidateAsync(new CreateTodo.CreateTodoCommand(tooLong, null));
 
         await Assert.That(result.IsValid).IsFalse();
     }
@@ -93,7 +93,7 @@ public class CreateTodoValidatorTests
     {
         var validator = new CreateTodo.Validator();
 
-        var result = await validator.ValidateAsync(new CreateTodo.Command("valid", DateTime.Today.AddDays(-1)));
+        var result = await validator.ValidateAsync(new CreateTodo.CreateTodoCommand("valid", DateTime.Today.AddDays(-1)));
 
         await Assert.That(result.IsValid).IsFalse();
     }
@@ -103,7 +103,7 @@ public class CreateTodoValidatorTests
     {
         var validator = new CreateTodo.Validator();
 
-        var result = await validator.ValidateAsync(new CreateTodo.Command("valid", DateTime.Today.AddDays(1)));
+        var result = await validator.ValidateAsync(new CreateTodo.CreateTodoCommand("valid", DateTime.Today.AddDays(1)));
 
         await Assert.That(result.IsValid).IsTrue();
     }
@@ -113,7 +113,7 @@ public class CreateTodoValidatorTests
     {
         var validator = new CreateTodo.Validator();
 
-        var result = await validator.ValidateAsync(new CreateTodo.Command("valid", null));
+        var result = await validator.ValidateAsync(new CreateTodo.CreateTodoCommand("valid", null));
 
         await Assert.That(result.IsValid).IsTrue();
     }

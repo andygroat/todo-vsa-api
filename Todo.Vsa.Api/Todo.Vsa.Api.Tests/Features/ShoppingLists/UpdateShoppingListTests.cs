@@ -91,7 +91,7 @@ public class UpdateShoppingListValidatorTests
     {
         var validator = new UpdateShoppingList.Validator();
 
-        var result = await validator.ValidateAsync(new UpdateShoppingList.Command(Guid.NewGuid(), string.Empty));
+        var result = await validator.ValidateAsync(new UpdateShoppingList.UpdateShoppingListCommand(string.Empty));
 
         await Assert.That(result.IsValid).IsFalse();
     }
@@ -102,7 +102,7 @@ public class UpdateShoppingListValidatorTests
         var validator = new UpdateShoppingList.Validator();
         var tooLong = new string('x', 101);
 
-        var result = await validator.ValidateAsync(new UpdateShoppingList.Command(Guid.NewGuid(), tooLong));
+        var result = await validator.ValidateAsync(new UpdateShoppingList.UpdateShoppingListCommand(tooLong));
 
         await Assert.That(result.IsValid).IsFalse();
     }

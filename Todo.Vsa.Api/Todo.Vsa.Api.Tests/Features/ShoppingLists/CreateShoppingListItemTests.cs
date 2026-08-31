@@ -73,7 +73,7 @@ public class CreateShoppingListItemValidatorTests
     public async Task Validator_WhenTitleIsEmpty_FailsValidation()
     {
         var validator = new CreateShoppingListItem.Validator();
-        var result = await validator.ValidateAsync(new CreateShoppingListItem.Command(Guid.NewGuid(), string.Empty));
+        var result = await validator.ValidateAsync(new CreateShoppingListItem.CreateShoppingListItemCommand(string.Empty));
         await Assert.That(result.IsValid).IsFalse();
     }
 
@@ -81,15 +81,7 @@ public class CreateShoppingListItemValidatorTests
     public async Task Validator_WhenTitleExceeds200Chars_FailsValidation()
     {
         var validator = new CreateShoppingListItem.Validator();
-        var result = await validator.ValidateAsync(new CreateShoppingListItem.Command(Guid.NewGuid(), new string('x', 201)));
-        await Assert.That(result.IsValid).IsFalse();
-    }
-
-    [Test]
-    public async Task Validator_WhenListIdIsEmpty_FailsValidation()
-    {
-        var validator = new CreateShoppingListItem.Validator();
-        var result = await validator.ValidateAsync(new CreateShoppingListItem.Command(Guid.Empty, "valid"));
+        var result = await validator.ValidateAsync(new CreateShoppingListItem.CreateShoppingListItemCommand(new string('x', 201)));
         await Assert.That(result.IsValid).IsFalse();
     }
 
@@ -97,7 +89,7 @@ public class CreateShoppingListItemValidatorTests
     public async Task Validator_WhenValid_PassesValidation()
     {
         var validator = new CreateShoppingListItem.Validator();
-        var result = await validator.ValidateAsync(new CreateShoppingListItem.Command(Guid.NewGuid(), "Milk"));
+        var result = await validator.ValidateAsync(new CreateShoppingListItem.CreateShoppingListItemCommand("Milk"));
         await Assert.That(result.IsValid).IsTrue();
     }
 }

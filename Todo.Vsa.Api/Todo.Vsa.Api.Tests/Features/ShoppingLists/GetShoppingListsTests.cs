@@ -43,7 +43,7 @@ public class GetShoppingListsTests
         // Assert
         await Assert.That(result.IsSuccess).IsTrue();
         var lists = result.Value.ToList();
-        await Assert.That(lists).HasCount().EqualTo(2);
+        await Assert.That(lists).Count().IsEqualTo(2);
         await Assert.That(lists.Any(l => l.Title == "Groceries")).IsTrue();
         await Assert.That(lists.Any(l => l.Title == "Hardware")).IsTrue();
     }
@@ -67,7 +67,7 @@ public class GetShoppingListsTests
         // Assert
         await Assert.That(result.IsSuccess).IsTrue();
         var lists = result.Value.ToList();
-        await Assert.That(lists).HasCount().EqualTo(1);
+        await Assert.That(lists).Count().IsEqualTo(1);
         await Assert.That(lists[0].Title).IsEqualTo("Active");
     }
 

@@ -15,9 +15,15 @@ public static class UpdateShoppingList
     /// <summary>
     /// Command record representing the data required to update a shopping list.
     /// </summary>
+    /// <param name="Title">The new title of the shopping list.</param>
+    public record UpdateShoppingListCommand(string Title) : IRequest<Result<bool>>;
+
+    /// <summary>
+    /// Command record representing the data required to update a shopping list.
+    /// </summary>
     /// <param name="Id">The unique identifier of the shopping list.</param>
     /// <param name="Title">The new title of the shopping list.</param>
-    public record UpdateShoppingListCommand(Guid Id, string Title) : IRequest<Result<bool>>;
+    internal record Command(Guid Id, string Title) : IRequest<Result<bool>>;
 
     /// <summary>
     /// Validator class for validating the UpdateShoppingList command.
@@ -26,7 +32,6 @@ public static class UpdateShoppingList
     {
         public Validator()
         {
-            RuleFor(x => x.Id).NotEmpty();
             RuleFor(x => x.Title).NotEmpty().MaximumLength(100);
         }
     }
@@ -36,9 +41,9 @@ public static class UpdateShoppingList
     /// </summary>
     /// <param name="context">The database context used to update the shopping list.</param>
     /// <param name="logger">The logger used to log information about the update.</param>
-    internal sealed class Handler(TodoDbContext context, ILogger<Handler> logger) : IRequestHandler<UpdateShoppingListCommand, Result<bool>>
+    internal sealed class Handler(TodoDbContext context, ILogger<Handler> logger) : IRequestHandler<Command, Result<bool>>
     {
-        public async Task<Result<bool>> Handle(UpdateShoppingListCommand request, CancellationToken cancellationToken)
+        public async Task<Result<bool>> Handle(Command request, CancellationToken cancellationToken)
         {
             var shoppingList = await context.ShoppingLists
                 .Where(sl => sl.Id == request.Id && sl.Status != BusinessObjectStatus.Deleted)
@@ -69,12 +74,7 @@ public static class UpdateShoppingList
     {
         app.MapPut("/api/shoppinglists/{id:guid}", async (Guid id, UpdateShoppingListCommand command, IMediator mediator, CancellationToken cancellationToken) =>
         {
-            if (id != command.Id)
-            {
-                return Results.BadRequest(new { error = "ID in URL does not match ID in body" });
-            }
-
-            Result<bool> result = await mediator.Send(command, cancellationToken);
+            Result<bool> result = await mediator.Send(new Command(id, command.Title), cancellationToken);
 
             return result.IsSuccess
                 ? Results.NoContent()
