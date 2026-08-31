@@ -1,5 +1,6 @@
 ﻿using Scalar.AspNetCore;
 using System.Diagnostics.CodeAnalysis;
+using Todo.Vsa.Api.Features.ShoppingLists;
 using Todo.Vsa.Api.Features.Todos;
 
 namespace Todo.Vsa.Api.Infrastructure.Extensions
@@ -22,6 +23,9 @@ namespace Todo.Vsa.Api.Infrastructure.Extensions
 
             // Map the to-do item endpoints for the WebApplication instance.
             app.MapTodoEndpoints();
+
+            // Map the shopping list endpoints for the WebApplication instance.
+            app.MapShoppingListEndpoints();
 
             return app;
         }

@@ -17,14 +17,14 @@ public static class CreateTodo
     /// </summary>
     /// <param name="Description">The description of the Todo item.</param>
     /// <param name="DueDate">The due date of the Todo item.</param>
-    public record Command(string Description, DateTime? DueDate) : IRequest<Result<Guid>>;
+    public record CreateTodoCommand(string Description, DateTime? DueDate) : IRequest<Result<Guid>>;
 
     /// <summary>
     /// Validator class for validating the CreateTodo command. This class inherits from AbstractValidator provided by FluentValidation and defines validation rules for the command's 
     /// properties, ensuring that the description is not empty and has a maximum length of 100 characters, and that the due date is greater than or equal to today's date if it is 
     /// provided.
     /// </summary>
-    public sealed class Validator : AbstractValidator<Command>
+    public sealed class Validator : AbstractValidator<CreateTodoCommand>
     {
         public Validator()
         {
@@ -40,10 +40,10 @@ public static class CreateTodo
     /// </summary>
     /// <param name="context">The database context used to interact with the Todo items in the database.</param>
     /// <param name="logger">The logger used to log information about the creation of the Todo item.</param>
-    internal sealed class Handler (TodoDbContext context, ILogger<Handler> logger) : IRequestHandler<Command, Result<Guid>>
+    internal sealed class Handler (TodoDbContext context, ILogger<Handler> logger) : IRequestHandler<CreateTodoCommand, Result<Guid>>
     {
         
-        public async Task<Result<Guid>> Handle(Command request, CancellationToken cancellationToken)
+        public async Task<Result<Guid>> Handle(CreateTodoCommand request, CancellationToken cancellationToken)
         {
             // Create the new TodoItem entity based on the request data
             var todoItem = new TodoItem
@@ -74,7 +74,7 @@ public static class CreateTodo
     public static WebApplication MapCreateTodoEndpoint(this WebApplication app)
     {
         // Map the HTTP POST endpoint for creating a new Todo item
-        app.MapPost("/api/todos", async (Command command, IMediator mediator, CancellationToken cancellationToken) => 
+        app.MapPost("/api/todos", async (CreateTodoCommand command, IMediator mediator, CancellationToken cancellationToken) => 
         {
             // Send the command to the MediatR handler and await the result
             Result<Guid> result = await mediator.Send(command, cancellationToken);
